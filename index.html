@@ -1,0 +1,1115 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>踩踏解压网站-气泡膜与踩踏音效实操指南</title>
+<meta name="description" content="踩踏解压网站收录气泡膜踩踏、踩雪音效、仿真踏板等在线解压玩法，整理踩踏力度、节奏与音效触发规则，附体验路线、常见问题与设备实测记录，帮助初次接触的人在十分钟内找到合适的踩踏解压方式。">
+<meta name="keywords" content="踩踏解压网站">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%232f5d50'/%3E%3Ccircle cx='20' cy='24' r='7' fill='%23e8f3ee'/%3E%3Ccircle cx='44' cy='24' r='7' fill='%23e8f3ee'/%3E%3Ccircle cx='20' cy='44' r='7' fill='%23e8f3ee'/%3E%3Ccircle cx='44' cy='44' r='7' fill='%23e8f3ee'/%3E%3C/svg%3E">
+<style>
+:root{
+  --c-bg:#f4f1ea;
+  --c-paper:#ffffff;
+  --c-ink:#1f2b27;
+  --c-ink-2:#45564f;
+  --c-mute:#6d7d76;
+  --c-main:#2f5d50;
+  --c-main-d:#204438;
+  --c-accent:#c96a3c;
+  --c-accent-soft:#f6e3d7;
+  --c-line:#d9d4c7;
+  --c-soft:#e8efe9;
+  --c-warn:#8a5a13;
+  --r-s:6px;
+  --r-m:12px;
+  --r-l:20px;
+  --sh-s:0 1px 2px rgba(31,43,39,.08);
+  --sh-m:0 6px 18px rgba(31,43,39,.09);
+  --sp-1:8px;
+  --sp-2:14px;
+  --sp-3:22px;
+  --sp-4:34px;
+  --sp-5:52px;
+  --fs-body:16px;
+  --fs-s:14px;
+  --fs-xs:12.5px;
+  --fh:1.75;
+  --sticky-offset:104px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--c-bg);
+  color:var(--c-ink);
+  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;
+  font-size:var(--fs-body);
+  line-height:var(--fh);
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{line-height:1.3;margin:0;font-weight:700}
+p{margin:0 0 var(--sp-2)}
+a{color:var(--c-main-d);text-decoration:none}
+a:hover{text-decoration:underline}
+ul,ol{margin:0 0 var(--sp-2);padding-left:1.2em}
+li{margin-bottom:6px}
+section[id],div[id]{scroll-margin-top:calc(var(--sticky-offset) + 12px)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* 吸顶公告条 + 页头 */
+.stick-top{position:sticky;top:0;z-index:60}
+.notice{
+  background:var(--c-main-d);color:#eef5f1;font-size:var(--fs-xs);
+  letter-spacing:.02em;
+}
+.notice .wrap{display:flex;gap:12px;align-items:center;padding-top:7px;padding-bottom:7px;flex-wrap:wrap}
+.notice strong{color:#ffd9a8;font-weight:700}
+.notice a{color:#ffe4b8;text-decoration:underline}
+.site-header{
+  background:rgba(255,255,255,.94);
+  backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--c-line);
+  box-shadow:var(--sh-s);
+}
+.header-inner{display:flex;align-items:center;gap:var(--sp-3);padding:10px 20px;max-width:1180px;margin:0 auto}
+.brand{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.brand-mark{width:38px;height:38px;flex:0 0 auto}
+.brand-text{font-size:17px;font-weight:800;letter-spacing:.01em;color:var(--c-ink)}
+.nav-main{display:flex;gap:2px;flex:1;flex-wrap:wrap;min-width:0}
+.nav-main a{
+  font-size:var(--fs-s);color:var(--c-ink-2);padding:7px 10px;border-radius:var(--r-s);
+}
+.nav-main a:hover{background:var(--c-soft);text-decoration:none;color:var(--c-main-d)}
+.nav-main a.on{background:var(--c-main);color:#fff}
+.header-tools{display:flex;align-items:center;gap:8px;margin-left:auto}
+.search-box{position:relative;display:flex;align-items:center}
+.search-box input{
+  width:170px;padding:7px 10px;border:1px solid var(--c-line);border-radius:var(--r-s);
+  font-size:var(--fs-s);font-family:inherit;background:#fff;color:var(--c-ink);
+}
+.search-box input:focus{outline:2px solid var(--c-main);outline-offset:1px}
+.search-out{
+  position:absolute;top:calc(100% + 6px);left:0;right:0;min-width:240px;background:#fff;
+  border:1px solid var(--c-line);border-radius:var(--r-m);box-shadow:var(--sh-m);
+  padding:8px;font-size:var(--fs-s);display:none;max-height:280px;overflow:auto;z-index:70;
+}
+.search-out.show{display:block}
+.search-out a{display:block;padding:6px 8px;border-radius:var(--r-s);color:var(--c-ink)}
+.search-out a:hover{background:var(--c-soft);text-decoration:none}
+.search-out .empty{color:var(--c-mute);padding:6px 8px}
+.btn-menu{
+  display:none;background:var(--c-soft);border:1px solid var(--c-line);border-radius:var(--r-s);
+  padding:7px 11px;font-size:var(--fs-s);font-family:inherit;color:var(--c-ink);cursor:pointer;
+}
+.btn-menu:focus-visible{outline:2px solid var(--c-main);outline-offset:2px}
+
+/* 首屏 */
+.hero{position:relative;overflow:hidden;padding:var(--sp-5) 0 var(--sp-4);}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:var(--sp-4);align-items:center}
+.eyebrow{
+  display:inline-block;font-size:var(--fs-xs);letter-spacing:.14em;color:var(--c-main-d);
+  background:var(--c-soft);border:1px solid var(--c-line);padding:4px 10px;border-radius:999px;margin-bottom:14px;
+}
+.hero h1{font-size:clamp(30px,4.2vw,46px);letter-spacing:.01em;color:var(--c-ink)}
+.hero-lead{font-size:17px;color:var(--c-ink-2);margin-top:14px;max-width:33em}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:var(--sp-3)}
+.btn{
+  display:inline-block;padding:11px 20px;border-radius:var(--r-m);font-size:var(--fs-s);
+  font-weight:700;border:1px solid transparent;transition:transform .16s ease,box-shadow .16s ease;
+}
+.btn:hover{text-decoration:none;transform:translateY(-2px)}
+.btn-primary{background:var(--c-main);color:#fff;box-shadow:var(--sh-s)}
+.btn-primary:hover{background:var(--c-main-d)}
+.btn-ghost{background:#fff;color:var(--c-main-d);border-color:var(--c-line)}
+.hero-stats{display:flex;gap:var(--sp-3);flex-wrap:wrap;margin-top:var(--sp-3);font-size:var(--fs-s);color:var(--c-ink-2)}
+.hero-stats b{display:block;font-size:22px;color:var(--c-main-d);line-height:1.2}
+/* 原创视觉：踩踏砖纹 */
+.hero-art{position:relative;aspect-ratio:1/1;max-width:430px;margin-left:auto}
+.hero-art svg{width:100%;height:100%;display:block}
+@media (prefers-reduced-motion:no-preference){
+  .pulse-dot{animation:pulse 2.6s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:.35;r:5}50%{opacity:1;r:8}}
+}
+
+/* 主内容三栏 */
+.layout{display:grid;grid-template-columns:200px minmax(0,1fr) 280px;gap:var(--sp-4);padding:var(--sp-4) 0 var(--sp-5)}
+.side-nav{position:sticky;top:calc(var(--sticky-offset) + 16px);align-self:start;font-size:var(--fs-s)}
+.side-nav h2{font-size:13px;letter-spacing:.1em;color:var(--c-mute);margin-bottom:10px;font-weight:700}
+.side-nav ul{list-style:none;padding:0;margin:0;border-left:2px solid var(--c-line)}
+.side-nav li{margin:0}
+.side-nav a{display:block;padding:6px 12px;color:var(--c-ink-2);border-left:2px solid transparent;margin-left:-2px}
+.side-nav a:hover{color:var(--c-main-d);text-decoration:none}
+.side-nav a.active{color:var(--c-main-d);border-left-color:var(--c-main);background:var(--c-soft);font-weight:700}
+.side-nav .sub{font-size:var(--fs-xs)}
+main{min-width:0}
+
+/* 通用板块 */
+.block{margin-bottom:var(--sp-5)}
+.block-head{display:flex;align-items:baseline;gap:12px;margin-bottom:var(--sp-3);flex-wrap:wrap}
+.block-head h2{font-size:23px;color:var(--c-ink)}
+.block-head .hint{font-size:var(--fs-xs);color:var(--c-mute)}
+.divider{height:1px;background:var(--c-line);margin:var(--sp-4) 0}
+.card{
+  background:var(--c-paper);border:1px solid var(--c-line);border-radius:var(--r-m);
+  padding:var(--sp-3);box-shadow:var(--sh-s);
+}
+.card h3{font-size:16.5px;margin-bottom:8px}
+.card p{font-size:var(--fs-s);color:var(--c-ink-2);margin-bottom:8px}
+.meta{font-size:var(--fs-xs);color:var(--c-mute);display:flex;gap:10px;flex-wrap:wrap}
+.tag{
+  display:inline-block;font-size:var(--fs-xs);background:var(--c-soft);color:var(--c-main-d);
+  padding:2px 9px;border-radius:999px;border:1px solid var(--c-line);margin:0 6px 6px 0;
+}
+.tag:hover{text-decoration:none;background:var(--c-main);color:#fff}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-2)}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-2)}
+
+/* 概览 */
+.overview{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--sp-2)}
+.ov-item{background:var(--c-paper);border:1px solid var(--c-line);border-radius:var(--r-m);padding:16px 18px}
+.ov-item h3{font-size:15px;margin-bottom:6px}
+.ov-item p{font-size:var(--fs-s);color:var(--c-ink-2);margin:0}
+.ov-item .num{font-size:26px;color:var(--c-accent);font-weight:800;line-height:1.1;display:block;margin-bottom:4px}
+
+/* 精选（图卡） */
+.pick{display:grid;grid-template-columns:1.15fr .85fr;gap:var(--sp-2)}
+.pick-main{background:var(--c-paper);border:1px solid var(--c-line);border-radius:var(--r-m);overflow:hidden;box-shadow:var(--sh-m)}
+.pick-main img{width:100%;height:200px;object-fit:cover;display:block}
+.pick-main .body{padding:18px}
+.pick-main h3{font-size:19px;margin-bottom:8px}
+.pick-side{display:grid;gap:var(--sp-2)}
+.pick-side .card{padding:16px}
+.pick-side h3{font-size:15px}
+
+/* 最新更新（紧凑列表 + 时间） */
+.updates{list-style:none;padding:0;margin:0;background:var(--c-paper);border:1px solid var(--c-line);border-radius:var(--r-m);overflow:hidden}
+.updates li{display:grid;grid-template-columns:96px 1fr;gap:14px;padding:13px 18px;margin:0;border-bottom:1px dashed var(--c-line);font-size:var(--fs-s)}
+.updates li:last-child{border-bottom:0}
+.updates time{color:var(--c-accent);font-weight:700;font-variant-numeric:tabular-nums}
+.updates b{color:var(--c-ink)}
+.updates span{color:var(--c-ink-2)}
+
+/* 分类入口 */
+.cats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.cat{
+  display:block;background:var(--c-paper);border:1px solid var(--c-line);border-radius:var(--r-m);
+  padding:14px 12px;font-size:var(--fs-s);font-weight:700;color:var(--c-ink);transition:transform .16s ease;
+}
+.cat:hover{text-decoration:none;transform:translateY(-2px);border-color:var(--c-main);box-shadow:var(--sh-s)}
+.cat small{display:block;font-weight:400;color:var(--c-mute);font-size:var(--fs-xs);margin-top:4px}
+
+/* 深度解析 分栏正文 */
+.deep{background:var(--c-paper);border:1px solid var(--c-line);border-radius:var(--r-l);padding:var(--sp-4);box-shadow:var(--sh-s)}
+.deep h2{font-size:25px;margin-bottom:6px}
+.deep .dek{color:var(--c-mute);font-size:var(--fs-s);margin-bottom:var(--sp-3)}
+.deep h3{font-size:18px;margin:var(--sp-3) 0 10px;padding-left:12px;border-left:4px solid var(--c-accent)}
+.deep p{font-size:15.5px}
+.deep .split{columns:2;column-gap:var(--sp-4)}
+.deep .split p{break-inside:avoid}
+.quote{
+  border-left:3px solid var(--c-main);background:var(--c-soft);padding:12px 16px;border-radius:0 var(--r-m) var(--r-m) 0;
+  font-size:14.5px;color:var(--c-ink-2);margin:var(--sp-2) 0;
+}
+.checklist{background:#fbfaf6;border:1px dashed var(--c-line);border-radius:var(--r-m);padding:14px 18px;margin:var(--sp-2) 0}
+.checklist h4{font-size:14px;color:var(--c-main-d);margin-bottom:8px;letter-spacing:.04em}
+.checklist ul{margin:0;padding-left:1.1em;font-size:var(--fs-s);color:var(--c-ink-2)}
+
+/* 体验指南 编号步骤 */
+.steps{counter-reset:step;list-style:none;padding:0;margin:0;display:grid;gap:12px}
+.steps li{
+  counter-increment:step;position:relative;background:var(--c-paper);border:1px solid var(--c-line);
+  border-radius:var(--r-m);padding:16px 18px 16px 62px;font-size:var(--fs-s);
+}
+.steps li::before{
+  content:counter(step,decimal-leading-zero);position:absolute;left:18px;top:15px;
+  font-size:19px;font-weight:800;color:var(--c-accent);font-variant-numeric:tabular-nums;
+}
+.steps b{display:block;font-size:15px;color:var(--c-ink);margin-bottom:3px}
+
+/* 对照面板 */
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--c-line);border-radius:var(--r-m);overflow:hidden;background:var(--c-paper)}
+.compare > div{padding:16px 18px;font-size:var(--fs-s)}
+.compare .left{border-right:1px solid var(--c-line);background:#fbfaf6}
+.compare h3{font-size:15px;margin-bottom:8px}
+.compare ul{padding-left:1.1em;margin:0;color:var(--c-ink-2)}
+.compare .vs{font-size:var(--fs-xs);color:var(--c-mute);display:block;margin-bottom:4px;letter-spacing:.1em}
+
+/* FAQ */
+.faq{display:grid;gap:10px}
+details{background:var(--c-paper);border:1px solid var(--c-line);border-radius:var(--r-m);padding:0}
+details summary{
+  cursor:pointer;padding:14px 18px;font-size:15px;font-weight:700;color:var(--c-ink);
+  list-style:none;display:flex;justify-content:space-between;gap:12px;align-items:center;
+}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:"＋";color:var(--c-main);font-weight:700;flex:0 0 auto}
+details[open] summary::after{content:"－"}
+details summary:focus-visible{outline:2px solid var(--c-main);outline-offset:-2px;border-radius:var(--r-m)}
+details .ans{padding:0 18px 16px;font-size:var(--fs-s);color:var(--c-ink-2);border-top:1px dashed var(--c-line);padding-top:12px}
+
+/* 评论 */
+.comments{display:grid;gap:12px}
+.comment{background:var(--c-paper);border:1px solid var(--c-line);border-radius:var(--r-m);padding:14px 18px;font-size:var(--fs-s)}
+.comment .who{display:flex;gap:10px;align-items:center;margin-bottom:6px;font-size:var(--fs-xs);color:var(--c-mute)}
+.comment .who b{color:var(--c-ink);font-size:14px}
+.comment .avatar{width:26px;height:26px;border-radius:50%;background:var(--c-soft);display:inline-flex;align-items:center;justify-content:center;color:var(--c-main-d);font-weight:800;font-size:12px;border:1px solid var(--c-line)}
+.comment p{margin:0;color:var(--c-ink-2)}
+.comment .ref{color:var(--c-accent);font-weight:700}
+
+/* 资讯 */
+.news{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.news li{background:var(--c-paper);border:1px solid var(--c-line);border-radius:var(--r-m);padding:13px 16px;font-size:var(--fs-s)}
+.news li b{color:var(--c-ink)}
+.news .src{font-size:var(--fs-xs);color:var(--c-mute);margin-top:4px}
+
+/* 相关推荐 */
+.reco{display:flex;flex-wrap:wrap;gap:8px}
+
+/* 可信度分层/榜单 时间线 */
+.rank{list-style:none;padding:0;margin:0;display:grid;gap:10px;counter-reset:rank}
+.rank li{
+  counter-increment:rank;display:grid;grid-template-columns:44px 1fr;gap:12px;align-items:start;
+  background:var(--c-paper);border:1px solid var(--c-line);border-radius:var(--r-m);padding:13px 16px;font-size:var(--fs-s);
+}
+.rank li::before{
+  content:"#"counter(rank);font-weight:800;color:var(--c-accent);font-size:15px;font-variant-numeric:tabular-nums;
+}
+.rank b{color:var(--c-ink)}
+.rank .detail{color:var(--c-ink-2)}
+.rank .score{font-size:var(--fs-xs);color:var(--c-mute);margin-left:6px}
+
+/* 侧栏 */
+.rail{position:sticky;top:calc(var(--sticky-offset) + 16px);align-self:start;font-size:var(--fs-s)}
+.rail .card{margin-bottom:var(--sp-2);padding:16px}
+.rail h2{font-size:14px;letter-spacing:.06em;color:var(--c-mute);margin-bottom:10px;font-weight:700}
+.rail ul{list-style:none;padding:0;margin:0}
+.rail li{margin:0 0 8px;font-size:var(--fs-s);line-height:1.55}
+.rail li:last-child{margin-bottom:0}
+.rail .rail-num{color:var(--c-accent);font-weight:800;margin-right:6px;font-variant-numeric:tabular-nums}
+.rail .read-time{font-size:var(--fs-xs);color:var(--c-mute);display:block}
+.rail .stack{display:grid;gap:8px}
+
+/* 回顶部 */
+#toTop{
+  position:fixed;right:18px;bottom:22px;width:44px;height:44px;border-radius:50%;
+  background:var(--c-main);color:#fff;border:0;display:none;cursor:pointer;
+  box-shadow:var(--sh-m);font-size:17px;z-index:80;transition:opacity .2s ease;
+}
+#toTop.show{display:block}
+#toTop:focus-visible{outline:2px solid var(--c-accent);outline-offset:3px}
+
+/* 页脚 */
+footer.site-footer{background:var(--c-main-d);color:#dfeae4;margin-top:var(--sp-4);padding:var(--sp-4) 0 var(--sp-3)}
+.footer-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:var(--sp-3)}
+footer h2{font-size:15px;color:#fff;margin-bottom:10px}
+footer p{font-size:var(--fs-s);color:#c4d6cd;margin-bottom:8px}
+footer a{color:#dfeae4}
+footer ul{list-style:none;padding:0;margin:0;font-size:var(--fs-s)}
+footer li{margin-bottom:6px}
+.foot-brand{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.foot-brand svg{width:34px;height:34px;flex:0 0 auto}
+.foot-brand span{font-size:16px;font-weight:800;color:#fff}
+.foot-bottom{border-top:1px solid rgba(255,255,255,.16);margin-top:var(--sp-3);padding-top:var(--sp-2);font-size:var(--fs-xs);color:#b3c8bd;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+/* 响应式 */
+@media (max-width:1080px){
+  .layout{grid-template-columns:200px minmax(0,1fr);gap:var(--sp-3)}
+  .rail{grid-column:1 / -1;position:static}
+  .rail{grid-column:2 / 3}
+  .rail .card{margin-bottom:var(--sp-2)}
+}
+@media (max-width:900px){
+  .hero-grid{grid-template-columns:1fr}
+  .hero-art{order:-1;max-width:300px;margin:0 auto}
+  .pick{grid-template-columns:1fr}
+  .grid-3{grid-template-columns:1fr 1fr}
+  .cats{grid-template-columns:1fr 1fr}
+  .deep .split{columns:1}
+  .compare{grid-template-columns:1fr}
+  .compare .left{border-right:0;border-bottom:1px solid var(--c-line)}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:760px){
+  :root{--sticky-offset:118px}
+  .header-inner{flex-wrap:wrap;gap:8px;padding:8px 16px}
+  .nav-main{display:none;order:4;flex-basis:100%;border-top:1px solid var(--c-line);padding-top:8px}
+  .nav-main.open{display:flex}
+  .btn-menu{display:inline-block}
+  .search-box input{width:132px}
+  .layout{grid-template-columns:1fr}
+  .side-nav{display:none}
+  .rail{grid-column:auto;position:static}
+  .overview{grid-template-columns:1fr}
+  .grid-2,.grid-3{grid-template-columns:1fr}
+  .updates li{grid-template-columns:1fr;gap:2px}
+  .hero{padding:var(--sp-4) 0 var(--sp-3)}
+  .deep{padding:var(--sp-3)}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{transition:none!important;animation:none!important}
+  .btn:hover,.cat:hover{transform:none}
+}
+</style>
+<script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<div class="stick-top">
+  <div class="notice" role="status" aria-label="站内更新公告">
+    <div class="wrap">
+      <span><strong>更新</strong> 2026-11-06「踩雪音效」新增 12 段实录，含干雪 / 湿雪 / 薄冰三种底噪 · 11-04 修正踏板灵敏度档位表</span>
+      <a href="/#updates">查看更新日志</a>
+    </div>
+  </div>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="/#top" aria-label="踩踏解压网站 首页">
+        <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+          <rect width="64" height="64" rx="14" fill="#2f5d50"/>
+          <ellipse cx="32" cy="18" rx="10" ry="6" fill="#e8f3ee"/>
+          <ellipse cx="32" cy="34" rx="10" ry="6" fill="#e8f3ee" opacity=".82"/>
+          <ellipse cx="32" cy="50" rx="10" ry="6" fill="#e8f3ee" opacity=".64"/>
+          <circle cx="32" cy="18" r="2.4" fill="#c96a3c"/>
+        </svg>
+        <span class="brand-text">踩踏解压网站</span>
+      </a>
+      <nav class="nav-main" id="navMain" aria-label="主题导航">
+        <a href="/#overview" class="on">领域概览</a>
+        <a href="/#picks">精选</a>
+        <a href="/#updates">更新</a>
+        <a href="/#cats">分类</a>
+        <a href="/#deep">深度解析</a>
+        <a href="/#guide">体验指南</a>
+        <a href="/#faq">问答</a>
+        <a href="/#comments">评论</a>
+      </nav>
+      <div class="header-tools">
+        <div class="search-box">
+          <label class="sr" for="siteSearch">站内查找关键词</label>
+          <input id="siteSearch" type="search" placeholder="查找气泡膜 / 踩雪" autocomplete="off">
+          <div class="search-out" id="searchOut" role="listbox" aria-label="查找结果"></div>
+        </div>
+        <button class="btn-menu" id="btnMenu" aria-expanded="false" aria-controls="navMain">菜单</button>
+      </div>
+    </div>
+  </header>
+</div>
+
+<div id="top"></div>
+
+<section class="hero" aria-labelledby="heroTitle">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">气泡膜 · 踩雪音效 · 仿真踏板</span>
+      <h1 id="heroTitle">踩踏解压网站</h1>
+      <p class="hero-lead">一组能上手操作的踩踏类解压工具合集：横向捏爆气泡膜、纵向踏碎薄冰层、戴耳机听干雪压实的细响。每项都标注了触发方式、设备要求和实测时长，第一次打开也能直接玩。</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="/#guide">按步骤开始体验</a>
+        <a class="btn btn-ghost" href="/#picks">看本周精选</a>
+      </div>
+      <div class="hero-stats">
+        <div><b>34</b>个可玩页面</div>
+        <div><b>9</b>类踩踏音源</div>
+        <div><b>11-06</b>最近一次收录</div>
+      </div>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <svg viewBox="0 0 400 400" role="presentation">
+        <defs>
+          <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#e8efe9"/><stop offset="1" stop-color="#d3e2d9"/>
+          </linearGradient>
+          <linearGradient id="g2" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#2f5d50"/><stop offset="1" stop-color="#204438"/>
+          </linearGradient>
+        </defs>
+        <rect x="18" y="18" width="364" height="364" rx="34" fill="url(#g1)"/>
+        <g fill="#ffffff" stroke="#b9cfc3" stroke-width="2">
+          <rect x="52" y="60" width="296" height="52" rx="26"/>
+          <rect x="44" y="132" width="312" height="52" rx="26"/>
+          <rect x="52" y="204" width="296" height="52" rx="26"/>
+          <rect x="44" y="276" width="312" height="52" rx="26"/>
+        </g>
+        <g fill="#c96a3c">
+          <circle cx="120" cy="86" r="11"/><circle cx="196" cy="86" r="7"/><circle cx="272" cy="86" r="9"/>
+          <circle cx="112" cy="158" r="8"/><circle cx="188" cy="158" r="12"/><circle cx="264" cy="158" r="6"/><circle cx="316" cy="158" r="8"/>
+          <circle cx="120" cy="230" r="10"/><circle cx="204" cy="230" r="6"/><circle cx="280" cy="230" r="9"/>
+          <circle cx="116" cy="302" r="7"/><circle cx="192" cy="302" r="10"/><circle cx="268" cy="302" r="12"/>
+        </g>
+        <g fill="#2f5d50">
+          <circle cx="196" cy="86" r="4"/>
+          <circle cx="264" cy="158" r="4"/>
+          <circle cx="204" cy="230" r="4"/>
+          <circle cx="116" cy="302" r="4"/>
+        </g>
+        <circle class="pulse-dot" cx="188" cy="158" r="5" fill="#e0b04a"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<div class="wrap layout">
+
+  <aside class="side-nav" aria-label="栏目导航">
+    <h2>栏目</h2>
+    <ul>
+      <li><a href="/#overview">领域概览</a></li>
+      <li><a href="/#picks">精选推荐</a></li>
+      <li><a href="/#updates">最新更新</a></li>
+      <li><a href="/#cats">分类入口</a></li>
+      <li><a href="/#deep">深度解析</a></li>
+      <li><a href="/#guide">体验指南</a></li>
+      <li><a href="/#compare">机制对照</a></li>
+      <li><a href="/#faq">常见问答</a></li>
+      <li><a href="/#comments">用户评论</a></li>
+      <li><a href="/#news">相关资讯</a></li>
+      <li><a href="/#rank">踩踏榜单</a></li>
+      <li><a href="/#reco">相关推荐</a></li>
+    </ul>
+  </aside>
+
+  <main>
+
+    <!-- 1 领域概览 -->
+    <section class="block" id="overview" aria-labelledby="hOverview">
+      <div class="block-head">
+        <h2 id="hOverview">领域概览：踩踏类解压的四种载体</h2>
+        <span class="hint">2026-11-08 更新 · 4 类 34 个页面</span>
+      </div>
+      <div class="overview">
+        <div class="ov-item">
+          <span class="num">12 段</span>
+          <h3>气泡膜踩踏</h3>
+          <p>以单排气泡膜网格为单位，支持按住拖动连续压破。主流页面单屏 200—320 颗气泡，压破音由短促的「啵」和高频断裂声两层合成，颗粒度随屏幕密度变化。</p>
+        </div>
+        <div class="ov-item">
+          <span class="num">9 类</span>
+          <h3>踩雪与薄冰音效</h3>
+          <p>干雪、湿雪、雪壳、薄冰、碎石五种底噪。踩雪音效的差异主要在低频厚度和断点密度，干雪颗粒细、湿雪下沉慢，录音时长多在 22—48 秒循环。</p>
+        </div>
+        <div class="ov-item">
+          <span class="num">6 款</span>
+          <h3>仿真踏板与踩碎物</h3>
+          <p>木质踏板、气垫踏板、落叶堆、枯叶、纸杯、泡沫块。物理反馈以触屏长按和力度曲线模拟，部分页面接入手机振动马达，安卓端可感知 60Hz 短振。</p>
+        </div>
+        <div class="ov-item">
+          <span class="num">7 个</span>
+          <h3>连锁与节奏型玩法</h3>
+          <p>踩踏解压棋、节奏踩点、多米诺气泡。核心变化是把单次踩踏变成连击，需要保持 120—160 BPM 的稳定点击，连击达到 30 次后音高逐级上扬。</p>
+        </div>
+      </div>
+      <p style="margin-top:var(--sp-2);font-size:var(--fs-s);color:var(--c-ink-2)">踩踏解压和按压类小游戏的区别在于触发范围：按压只看单点，踩踏看一整条路径是否被压过。路径完整度直接影响音效层数和振动次数，因此踩偏、踩断会带来明显不同的反馈。这也解释了为什么同类页面里，横向滑动比逐点点击更容易让人放松。</p>
+    </section>
+
+    <!-- 2 精选推荐 -->
+    <section class="block" id="picks" aria-labelledby="hPicks">
+      <div class="block-head">
+        <h2 id="hPicks">精选内容推荐：本周四个高完成度页面</h2>
+        <span class="hint">按触发反馈、音效层数、界面干扰度筛选</span>
+      </div>
+      <div class="pick">
+        <article class="pick-main">
+          <img src="https://picsum.photos/seed/bubblewrap-lane/720/400" width="720" height="400" loading="lazy" alt="横向排列的气泡膜网格，已被压破的气泡显示为凹陷圆点" style="object-fit:cover">
+          <div class="body">
+            <h3>气泡膜横向连踩 · 全屏 320 颗版</h3>
+            <p>单排 20 颗、共 16 排。按住滑过时每颗气泡按接触顺序爆开，不重复触发，压破音分三档音量，滑动越快音量衰减越明显。页面没有倒计时和分数弹窗，只保留左上角的压破计数。</p>
+            <div class="meta"><span>触发方式：按住拖动</span><span>单局：约 90 秒</span><span>建议静音外放</span></div>
+          </div>
+        </article>
+        <div class="pick-side">
+          <article class="card">
+            <h3>踩雪音效 · 干雪 22 秒循环</h3>
+            <p>2026-10-28 录于吉林北大湖，气温 -14℃，麦克风距雪面 18 厘米。低频几乎被削掉，剩下细碎的吱嘎声，适合戴入耳式耳机听。</p>
+            <div class="meta"><span>循环 22 秒</span><span>48kHz / 24bit</span></div>
+          </article>
+          <article class="card">
+            <h3>踩碎薄冰 · 单次触发版</h3>
+            <p>不循环，每踩一次冰面碎开一次，需要重新「结冰」约 1.6 秒。碎冰声里混入水面回响，比连续踩雪更有停顿感，适合想控制节奏的人。</p>
+            <div class="meta"><span>单次触发</span><span>冷却 1.6 秒</span></div>
+          </article>
+          <article class="card">
+            <h3>泡沫块手捏与脚踩双模式</h3>
+            <p>手指捏是短促的塑料摩擦声，脚踩换成较低沉的泡沫塌陷声。两种模式共用一套压痕记录，压痕深浅按力度保留 8 秒后恢复。</p>
+            <div class="meta"><span>双模式</span><span>压痕 8 秒</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3 最新更新 -->
+    <section class="block" id="updates" aria-labelledby="hUpdates">
+      <div class="block-head">
+        <h2 id="hUpdates">最新更新</h2>
+        <span class="hint">11-08 至 10-15 之间的收录与修订</span>
+      </div>
+      <ul class="updates">
+        <li><time datetime="2026-11-08">2026-11-08</time><span><b>踩踏节奏模式</b>加入「慢踩」档，单次间隔 0.9 秒，用于替代原来的 0.45 秒快踩档。</span></li>
+        <li><time datetime="2026-11-06">2026-11-06</time><span><b>踩雪音效</b>新增 12 段实录，干雪、湿雪、薄冰各 4 段，文件命名带气温与地点。</span></li>
+        <li><time datetime="2026-11-05">2026-11-05</time><span><b>多米诺气泡</b>修复第三排以上踩空后仍计算连击的问题，连击数改为严格按实际压破数。</span></li>
+        <li><time datetime="2026-11-04">2026-11-04</time><span><b>踏板灵敏度</b>修正档位表：低档触发阈值从 0.32 调为 0.40，减少误触。</span></li>
+        <li><time datetime="2026-11-02">2026-11-02</time><span><b>枯叶堆</b>更换落叶材质，压碎音由两层改为三层，补上叶脉断裂的高频。</span></li>
+        <li><time datetime="2026-10-29">2026-10-29</time><span><b>气泡膜计数器</b>支持清屏后保留历史最高纪录，最多存 7 天。</span></li>
+        <li><time datetime="2026-10-24">2026-10-24</time><span><b>移动端适配</b>：390px 宽下首页顶部不再出现 3px 横向滚动条。</span></li>
+        <li><time datetime="2026-10-15">2026-10-15</time><span><b>踩冰节奏</b>新增湿冰底噪，冷却时间从 2.2 秒缩短为 1.6 秒。</span></li>
+      </ul>
+    </section>
+
+    <!-- 4 分类入口 -->
+    <section class="block" id="cats" aria-labelledby="hCats">
+      <div class="block-head">
+        <h2 id="hCats">分类入口：按触发方式找</h2>
+        <span class="hint">10 个频道，名称按常用搜索词命名</span>
+      </div>
+      <div class="cats">
+        <a class="cat" href="/#guide">气泡膜踩踏<small>按住拖动，3 种颗粒密度</small></a>
+        <a class="cat" href="/#picks">踩雪音效<small>干雪 / 湿雪 / 雪壳</small></a>
+        <a class="cat" href="/#guide">踩碎薄冰<small>单次触发，带冷却</small></a>
+        <a class="cat" href="/#compare">仿真踏板<small>力度曲线与振动</small></a>
+        <a class="cat" href="/#picks">枯叶堆踩踏<small>三层碎裂音</small></a>
+        <a class="cat" href="/#guide">泡沫块手捏<small>双模式共用压痕</small></a>
+        <a class="cat" href="/#rank">节奏踩点<small>120—160 BPM</small></a>
+        <a class="cat" href="/#rank">多米诺气泡<small>连击计数</small></a>
+        <a class="cat" href="/#deep">踩踏解压棋<small>路径完整度判定</small></a>
+        <a class="cat" href="/#comments">纸杯踩扁<small>纸质塌陷声</small></a>
+      </div>
+    </section>
+
+    <!-- 5 深度解析 -->
+    <section class="block" id="deep" aria-labelledby="hDeep">
+      <article class="deep">
+        <h2 id="hDeep">深度解析：连续踩踏为什么比逐点点击更解压</h2>
+        <p class="dek">判断句集中在结论和理由，事实与说法差异另行标注时间与来源。</p>
+
+        <div class="split">
+          <p>把踩踏一类的页面按「触发单位」拆开，会看到两种完全不同的设计。逐点点击以单颗气泡或单块薄冰为单位，每次触发后必须重新瞄准；连续踩踏以一条路径为单位，判定的是从起点到当前点之间压过了多少格。后者把注意力从「点准」转到「走完」，手上的动作变粗，视觉与听觉的落点反而更密。</p>
+
+          <p>2026 年 10 月 24 日的移动端适配记录里有一组可比对的数据：同一张 320 颗气泡图，逐点点击平均每颗用时 0.62 秒，整张清完约 3 分 18 秒；按住横向拖动平均每颗 0.21 秒，整张约 1 分 07 秒。但拖动时漏踩率从 3% 升到 11%，漏踩的那部分不发声。也就是说，连续踩踏的快，一部分来自跳过，不是来自更快的反馈。</p>
+        </div>
+
+        <h3>1. 音效层数决定「停不下来」的手感</h3>
+        <p>2026-10-29 的「踩雪音效」录音说明写得很具体：干雪 22 秒循环里，有效音效层是 2 层，一层是雪粒断裂的高频，一层是脚掌压实的中频；湿雪 48 秒循环有 3 层，多了低频下沉。薄冰只有 1 层加一段回响。层数越多的音源，连续触发时越不容易出现相同波形叠加造成的听觉疲劳，这是湿雪版本被反复收进精选的直接原因。</p>
+
+        <div class="quote">可被反驳的判断：如果音效层数是主要变量，那么同层数的干雪和雪壳应该给出相近的连续踩踏时长偏好。但 11 月 6 日的收录数据里，雪壳的复玩率比干雪低 18 个百分点，说明层数之外，底噪的「颗粒期待感」也在起作用——踩下去前能预判大概会碎成几块。</div>
+
+        <h3>2. 振动与冷却是反向约束</h3>
+        <p>安卓端 60Hz 短振的单次时长约 12 毫秒，连续踩踏 30 次后，部分手机会因为马达占空比过高而拉长间隔。薄冰版本的 1.6 秒冷却是另一种约束：它强制打断连续，把节奏切成「踩—等—踩」。11 月 8 日新增的「慢踩」档把间隔定在 0.9 秒，刚好落在冷却和振动恢复之间，属于偏保守的设置。</p>
+
+        <h3>3. 判断拆成可核对项</h3>
+        <div class="checklist">
+          <h4>连续踩踏优于逐点点击的三个可核对条件</h4>
+          <ul>
+            <li>漏踩率低于 15%：超过这个数，未触发区域会让节奏断掉，连贯感消失。</li>
+            <li>音效层数不少于 2 层：单层音源在 30 秒后重复感明显，实测复玩率下降约两成。</li>
+            <li>单局时长控制在 60—120 秒：11-02 枯叶堆改为三层音后，单局 75 秒版本的完成率是 4 分钟版本的两倍多。</li>
+          </ul>
+        </div>
+
+        <p>反过来说，逐点点击并没有被淘汰。10-29 计数器保留历史纪录之后，逐点模式反而更适合做「一次清多少」的目标感，尤其是 7 天内多次挑战同一张图。两种模式的受众差异主要在耐心长度，不在解压效果本身。</p>
+
+        <p>还有一个容易被忽略的细节：气泡膜的视觉压痕。压破后的气泡如果只是消失，眼睛得不到「踩过」的证据；改成凹陷圆点后，屏幕上的历史轨迹会持续累积。这一点在 10-24 的适配记录里被顺带提到，没有单独的更新条目，但对连续踩踏的坚持时长影响很大。</p>
+      </article>
+    </section>
+
+    <!-- 6 体验指南 -->
+    <section class="block" id="guide" aria-labelledby="hGuide">
+      <div class="block-head">
+        <h2 id="hGuide">体验指南：十分钟内找到合适的踩踏方式</h2>
+        <span class="hint">从设备检查到节奏选择</span>
+      </div>
+      <ol class="steps">
+        <li><b>先确认输出环境</b>踩踏音效的低频在手机外放上几乎听不到。干雪和湿雪建议用耳机，薄冰和纸杯可以外放。踏板类页面需要振动，安卓端在系统设置里打开触感反馈。</li>
+        <li><b>选路径而非选页面</b>想快速清屏选横向连踩；想控制节奏选薄冰单次触发；想听音效细节选 22 秒干雪循环。三类页面的按键布局都不一样，先看触发提示再动手。</li>
+        <li><b>调踏板灵敏度</b>低档阈值 0.40，适合轻踩；中档 0.28，适合正常力度；高档 0.16，容易误触，一般只在纸杯和泡沫块上用。11-04 的修正就是针对低档误触做的。</li>
+        <li><b>控制单局时长</b>气泡膜 90 秒、枯叶堆 75 秒、踩冰一局约 40 秒。超过两分钟后，重复波形叠加会让听感变钝，这时换一种音源比继续踩更有效。</li>
+        <li><b>记录与复查</b>计数器保留 7 天最高纪录，薄冰的冷却时间在设置里可见。复查时对照 11-06 的录音命名（气温 + 地点），能分辨同一段音效在不同环境下的差别。</li>
+      </ol>
+      <p style="margin-top:var(--sp-2);font-size:var(--fs-s);color:var(--c-ink-2)">如果只想试一次，从干雪 22 秒循环开始最稳：触发简单、漏踩不影响、退出无弹窗。它的缺点也明确——低频少，外放听不出层次，这也是很多人第一次觉得「踩雪没意思」的原因。</p>
+    </section>
+
+    <!-- 7 机制对照 -->
+    <section class="block" id="compare" aria-labelledby="hCompare">
+      <div class="block-head">
+        <h2 id="hCompare">机制对照：连续踩踏与逐点点击的差异</h2>
+        <span class="hint">同一张 320 颗气泡图的实测对比</span>
+      </div>
+      <div class="compare">
+        <div class="left">
+          <span class="vs">连续踩踏</span>
+          <h3>按住拖动，按路径判定</h3>
+          <ul>
+            <li>单颗平均 0.21 秒</li>
+            <li>整张清完约 1 分 07 秒</li>
+            <li>漏踩率 11%</li>
+            <li>音效层数 2—3 层</li>
+            <li>适合：放松、听声音、短时清屏</li>
+          </ul>
+        </div>
+        <div>
+          <span class="vs">逐点点击</span>
+          <h3>单颗触发，按命中判定</h3>
+          <ul>
+            <li>单颗平均 0.62 秒</li>
+            <li>整张清完约 3 分 18 秒</li>
+            <li>漏踩率 3%</li>
+            <li>音效层数 1—2 层</li>
+            <li>适合：目标感、七日纪录挑战</li>
+          </ul>
+        </div>
+      </div>
+      <p style="margin-top:var(--sp-2);font-size:var(--fs-s);color:var(--c-ink-2)">数据来自 10-24 移动端适配记录与 10-29 计数器更新说明，两组样本都在 390px 宽度、60Hz 刷新率下测得。差异最大的不是速度，是漏踩后是否留下痕迹：连续踩踏漏掉的区域保持凸起，视觉上能看见没踩到的地方。</p>
+    </section>
+
+    <!-- 8 FAQ -->
+    <section class="block" id="faq" aria-labelledby="hFaq">
+      <div class="block-head">
+        <h2 id="hFaq">常见问答</h2>
+        <span class="hint">按页面实际行为作答</span>
+      </div>
+      <div class="faq">
+        <details>
+          <summary>气泡膜踩踏的压破音为什么有时不出声？</summary>
+          <div class="ans">漏踩区域不会触发声音。按住拖动时，判定基于路径覆盖，手指滑得太快会在两格之间跳过一格。11-06 之后计数与声音同步，能直接从左上角数字看出漏了多少。</div>
+        </details>
+        <details>
+          <summary>踩雪音效里的干雪和湿雪差别在哪？</summary>
+          <div class="ans">干雪录音气温 -14℃，高频颗粒细，中频薄；湿雪录音在 0℃ 左右，低频下沉慢，循环长到 48 秒。耳机下差异明显，手机外放时低频被削，两者听起来接近，这也是外放用户更容易选错的原因。</div>
+        </details>
+        <details>
+          <summary>踩碎薄冰为什么要设置 1.6 秒冷却？</summary>
+          <div class="ans">薄冰是单次触发音源，碎冰声带水面回响，如果立刻可以重复踩，回响会叠在一起变成连续噪音。1.6 秒来自 10-15 的修订，原来的 2.2 秒太长，拖慢节奏。</div>
+        </details>
+        <details>
+          <summary>仿真踏板的低档和高档有什么区别？</summary>
+          <div class="ans">低档触发阈值 0.40，轻踩不容易误触，适合气泡膜和踏板；高档 0.16，力度稍大就触发，纸杯和泡沫块需要这种灵敏度。11-04 把低档从 0.32 调到 0.40，就是为了减少滑屏时的误触。</div>
+        </details>
+        <details>
+          <summary>枯叶堆的三层碎裂音具体是什么？</summary>
+          <div class="ans">叶面破裂、叶脉断裂、叶片落地三声，11-02 修订后依次间隔约 40、90 毫秒。干枯程度不同的叶子，三层音量比例不同，页面里按叶片面积自动分配。</div>
+        </details>
+        <details>
+          <summary>踩踏解压棋的路径完整度怎么算？</summary>
+          <div class="ans">以每次落指的起点到终点连成的线为候选路径，覆盖的格子数除以应覆盖格数即为完整度。低于 60% 时不触发连击加成，音高不上升。</div>
+        </details>
+        <details>
+          <summary>多米诺气泡的连击计数为什么和压破数不一致？</summary>
+          <div class="ans">11-05 修复前，踩空后仍计算连击；修复后连击严格按实际压破数计。现在两个数字一致，差值只出现在跨排触发的那一帧。</div>
+        </details>
+      </div>
+    </section>
+
+    <!-- 9 用户评论 -->
+    <section class="block" id="comments" aria-labelledby="hComments">
+      <div class="block-head">
+        <h2 id="hComments">用户评论</h2>
+        <span class="hint">含吐槽与中性评价</span>
+      </div>
+      <div class="comments">
+        <article class="comment">
+          <div class="who"><span class="avatar" aria-hidden="true">澄</span><b>澄野</b><span>11-07 22:14</span></div>
+          <p><span class="ref">干雪 22 秒循环</span>戴耳机确实能听出颗粒，但循环点在第 17 秒附近接得有点硬，每次到那里会突然安静一下。连续踩三次才习惯。</p>
+        </article>
+        <article class="comment">
+          <div class="who"><span class="avatar" aria-hidden="true">阿</span><b>阿岚</b><span>11-07 19:40</span></div>
+          <p><span class="ref">气泡膜横向连踩</span>320 颗那张图在手机上滑起来挺顺，压痕留着不会消失，这点比之前玩过的同类强。就是滑到底部时导航栏会跟着收，要重新按一下。</p>
+        </article>
+        <article class="comment">
+          <div class="who"><span class="avatar" aria-hidden="true">木</span><b>木子西</b><span>11-06 15:02</span></div>
+          <p>页面整体安静，没什么弹窗，这点好。节奏踩点那个我玩不明白，120 BPM 一开头还行，到 160 就跟不上了，可能是我不适合这类。</p>
+        </article>
+        <article class="comment">
+          <div class="who"><span class="avatar" aria-hidden="true">老</span><b>老萧</b><span>11-05 09:26</span></div>
+          <p><span class="ref">踩碎薄冰</span>1.6 秒冷却比原来的 2.2 秒舒服，回响叠得也没那么闷。问题是碎冰声低频偏重，外放听着像敲门，同事以为我在弄什么。</p>
+        </article>
+        <article class="comment">
+          <div class="who"><span class="avatar" aria-hidden="true">Q</span><b>Q太郎</b><span>11-04 21:33</span></div>
+          <p>低档阈值改成 0.40 之后误触少了很多，这个改动赞。之前放在桌上不小心碰到就触发，烦。</p>
+        </article>
+        <article class="comment">
+          <div class="who"><span class="avatar" aria-hidden="true">周</span><b>周小满</b><span>11-03 12:08</span></div>
+          <p><span class="ref">枯叶堆</span>三层音修订后，叶脉那声有点太尖，戴久了耳朵累。换回干雪就没事。两个音源切换要退出重进，略麻烦。</p>
+        </article>
+        <article class="comment">
+          <div class="who"><span class="avatar" aria-hidden="true">程</span><b>程一</b><span>11-02 20:47</span></div>
+          <p>作为睡前用的工具还行，不吵不闹。就是薄冰的冷却让人等得着急，不如直接去踩气泡膜。</p>
+        </article>
+        <article class="comment">
+          <div class="who"><span class="avatar" aria-hidden="true">大</span><b>大喵</b><span>10-30 08:15</span></div>
+          <p><span class="ref">泡沫块手捏与脚踩双模式</span>两种模式共用压痕这点做得细，捏的时候能看到上次踩的印子。不过手机上捏的动作容易触发页面滚动，得按住一会儿才行。</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 10 相关资讯 -->
+    <section class="block" id="news" aria-labelledby="hNews">
+      <div class="block-head">
+        <h2 id="hNews">相关资讯</h2>
+        <span class="hint">只出现在此栏的事件与观察</span>
+      </div>
+      <ul class="news">
+        <li>
+          <b>踩雪音效的录音地点扩展到两处</b>
+          <p>10-28 在吉林北大湖录 18 段，11-01 在河北崇礼补录 9 段。崇礼样本气温偏高 3℃，雪壳比例更大，命名里带「壳」字后缀。</p>
+          <div class="src">来源：11-06 收录清单</div>
+        </li>
+        <li>
+          <b>振动反馈的机型差异首次被记录</b>
+          <p>11-03 的测试笔记提到，同一档 60Hz 短振在两种安卓机型上的间隔分别是 12 毫秒和 18 毫秒，差别足以影响连击手感，但页面不做机型识别。</p>
+          <div class="src">来源：11-03 测试笔记（转述）</div>
+        </li>
+        <li>
+          <b>「慢踩」档的出现与争议</b>
+          <p>11-08 上线后，有用户认为 0.9 秒间隔削弱了连击感，另一部分人觉得正好。目前没有计划回退，但保留了 0.45 秒快踩档。</p>
+          <div class="src">来源：11-08 更新说明与评论（事实 + 转述）</div>
+        </li>
+        <li>
+          <b>踩踏解压棋的完整度阈值曾有另一种说法</b>
+          <p>有讨论称 60% 以下应完全不计分，11-08 的说明只表示不触发连击加成，分数照常计入。两种说法的差异在于「是否保留基础得分」，页面按后者执行。</p>
+          <div class="src">来源：社区讨论（推测）与 11-08 说明（事实）</div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- 11 榜单 / 时间线 -->
+    <section class="block" id="rank" aria-labelledby="hRank">
+      <div class="block-head">
+        <h2 id="hRank">踩踏榜单：复玩率与单局完成率</h2>
+        <span class="hint">按 10-15 至 11-07 的站内统计</span>
+      </div>
+      <ol class="rank">
+        <li>
+          <div><b>气泡膜横向连踩</b><span class="score">复玩率 74% · 完成率 68%</span><div class="detail">压痕保留和 320 颗的规模是主要加分项，单局 90 秒。”</div></div>
+        </li>
+        <li>
+          <div><b>踩雪音效 · 湿雪 48 秒</b><span class="score">复玩率 61% · 完成率 55%</span><div class="detail">三层音、低频下沉，耳机用户里反馈最好；外放用户完成率低 14 个百分点。</div></div>
+        </li>
+        <li>
+          <div><b>枯叶堆三层碎裂</b><span class="score">复玩率 57% · 完成率 72%</span><div class="detail">完成率高但复玩靠的是音效细节，叶脉声偏尖的问题仍在。</div></div>
+        </li>
+        <li>
+          <div><b>踩碎薄冰</b><span class="score">复玩率 49% · 完成率 64%</span><div class="detail">冷却改到 1.6 秒后复玩率上升约 9 个百分点，低频偏重是主要抱怨点。</div></div>
+        </li>
+        <li>
+          <div><b>泡沫块双模式</b><span class="score">复玩率 43% · 完成率 51%</span><div class="detail">捏与踩的切换有学习成本，手机上捏容易触发滚动。</div></div>
+        </li>
+        <li>
+          <div><b>节奏踩点 160 BPM</b><span class="score">复玩率 38% · 完成率 33%</span><div class="detail">完成率最低，与 BPM 偏高直接相关，120 BPM 版本完成率高 21 个百分点。</div></div>
+        </li>
+        <li>
+          <div><b>多米诺气泡</b><span class="score">复玩率 35% · 完成率 47%</span><div class="detail">11-05 修复连击计数后，数字与实际一致，争议减少。</div></div>
+        </li>
+        <li>
+          <div><b>纸杯踩扁</b><span class="score">复玩率 29% · 完成率 58%</span><div class="detail">塌陷声辨识度高，但重复后很快听腻，单局短。</div></div>
+        </li>
+      </ol>
+      <p style="margin-top:var(--sp-2);font-size:var(--fs-s);color:var(--c-ink-2)">这份榜单不含逐点点击模式，因为逐点模式的七日纪录挑战是独立统计的，混在一起会低估它的使用时长。11-08 之前的统计把两种模式合并，导致连续踩踏的复玩率被拉低，现已分开。</p>
+    </section>
+
+    <!-- 12 相关推荐 -->
+    <section class="block" id="reco" aria-labelledby="hReco">
+      <div class="block-head">
+        <h2 id="hReco">相关推荐</h2>
+        <span class="hint">按触发方式与音效类型相近推荐</span>
+      </div>
+      <div class="reco">
+        <a class="tag" href="/#picks">气泡膜踩踏</a>
+        <a class="tag" href="/#picks">踩雪音效</a>
+        <a class="tag" href="/#guide">踩碎薄冰</a>
+        <a class="tag" href="/#compare">仿真踏板</a>
+        <a class="tag" href="/#picks">枯叶堆踩踏</a>
+        <a class="tag" href="/#guide">泡沫块手捏</a>
+        <a class="tag" href="/#rank">节奏踩点 120 BPM</a>
+        <a class="tag" href="/#rank">多米诺气泡</a>
+        <a class="tag" href="/#deep">踩踏解压棋</a>
+        <a class="tag" href="/#comments">纸杯踩扁</a>
+      </div>
+      <p style="margin-top:var(--sp-2);font-size:var(--fs-s);color:var(--c-ink-2)">推荐依据只有两个：触发方式相同、音效层数接近。按热度排的推荐已经去掉了踩踏类里重复的条目，避免同一张气泡膜图以不同标题出现三次。</p>
+    </section>
+
+  </main>
+
+  <aside class="rail" aria-label="侧栏">
+    <div class="card">
+      <h2>热门条目</h2>
+      <ul>
+        <li><a href="/#picks">气泡膜横向连踩</a><span class="read-time">90 秒一局 · 320 颗</span></li>
+        <li><a href="/#picks">湿雪 48 秒循环</a><span class="read-time">三层音 · 耳机推荐</span></li>
+        <li><a href="/#guide">枯叶堆三层碎裂</a><span class="read-time">11-02 修订</span></li>
+        <li><a href="/#guide">踩碎薄冰 1.6 秒冷却</a><span class="read-time">单次触发</span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>最近修订</h2>
+      <ul>
+        <li><span class="rail-num">11-08</span>慢踩档 0.9 秒</li>
+        <li><span class="rail-num">11-06</span>新增 12 段踩雪实录</li>
+        <li><span class="rail-num">11-05</span>多米诺连击计数修复</li>
+        <li><span class="rail-num">11-04</span>踏板低档阈值 0.40</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>按场景找</h2>
+      <div class="stack">
+        <a class="tag" href="/#guide">睡前安静型</a>
+        <a class="tag" href="/#guide">通勤耳机型</a>
+        <a class="tag" href="/#compare">目标挑战型</a>
+        <a class="tag" href="/#rank">节奏跟拍型</a>
+      </div>
+    </div>
+    <div class="card">
+      <h2>关于示例数据</h2>
+      <p style="font-size:var(--fs-xs);color:var(--c-mute);margin:0">页面条目、录音地点、机型测试记录均为示例内容，用于说明触发方式与音效差异，不代表真实产品数据。</p>
+    </div>
+  </aside>
+
+</div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="foot-brand">
+          <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#204438"/><ellipse cx="32" cy="18" rx="10" ry="6" fill="#e8f3ee"/><ellipse cx="32" cy="34" rx="10" ry="6" fill="#e8f3ee" opacity=".82"/><ellipse cx="32" cy="50" rx="10" ry="6" fill="#e8f3ee" opacity=".64"/><circle cx="32" cy="18" r="2.4" fill="#c96a3c"/></svg>
+          <span>踩踏解压网站</span>
+        </div>
+        <p>把气泡膜、雪面与薄冰的踩踏反馈整理成可以单局完成的小工具，强调路径、音效层数与冷却节奏。</p>
+        <p style="font-size:var(--fs-xs);color:#b3c8bd">内容更新至 2026-11-08 · 对应修订项见「最新更新」</p>
+      </div>
+      <div>
+        <h2>频道入口</h2>
+        <ul>
+          <li><a href="/#guide">气泡膜踩踏</a></li>
+          <li><a href="/#picks">踩雪音效</a></li>
+          <li><a href="/#guide">踩碎薄冰</a></li>
+          <li><a href="/#compare">仿真踏板</a></li>
+          <li><a href="/#rank">节奏踩点</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>解读与问答</h2>
+        <ul>
+          <li><a href="/#deep">连续踩踏的机制分析</a></li>
+          <li><a href="/#faq">常见问答</a></li>
+          <li><a href="/#news">相关资讯</a></li>
+          <li><a href="/#comments">用户评论</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>说明</h2>
+        <ul>
+          <li>示例条目与录音地点均为演示用途</li>
+          <li>机型振动数据来自站内测试笔记</li>
+          <li>站内查找为本地匹配，不联网</li>
+          <li>页面关闭脚本后仍可阅读全文</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 踩踏解压网站示例页面 · 内容仅用于功能展示</span>
+      <span>更新时间 2026-11-08</span>
+    </div>
+  </div>
+</footer>
+
+<button id="toTop" type="button" aria-label="回到顶部">↑</button>
+
+<script>
+(function(){
+  "use strict";
+
+  /* 移动端菜单 */
+  var btnMenu = document.getElementById('btnMenu');
+  var navMain = document.getElementById('navMain');
+  if (btnMenu && navMain) {
+    btnMenu.addEventListener('click', function(){
+      var open = navMain.classList.toggle('open');
+      btnMenu.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    navMain.addEventListener('click', function(e){
+      if (e.target.tagName === 'A' && window.innerWidth <= 760) {
+        navMain.classList.remove('open');
+        btnMenu.setAttribute('aria-expanded','false');
+      }
+    });
+  }
+
+  /* 本地查找 */
+  var searchInput = document.getElementById('siteSearch');
+  var searchOut = document.getElementById('searchOut');
+  var index = [
+    {t:'气泡膜横向连踩', id:'picks', d:'按住拖动 · 320 颗 · 90 秒'},
+    {t:'气泡膜压痕保留', id:'deep', d:'压破后凹陷圆点留痕'},
+    {t:'踩雪音效 干雪 22 秒', id:'picks', d:'吉林北大湖 · -14℃ · 两层'},
+    {t:'踩雪音效 湿雪 48 秒', id:'rank', d:'三层音 · 低频下沉'},
+    {t:'踩碎薄冰 1.6 秒冷却', id:'guide', d:'单次触发 · 水面回响'},
+    {t:'仿真踏板灵敏度', id:'compare', d:'低档 0.40 / 中档 0.28 / 高档 0.16'},
+    {t:'枯叶堆三层碎裂音', id:'guide', d:'叶面 / 叶脉 / 落地 · 11-02 修订'},
+    {t:'泡沫块手捏与脚踩', id:'picks', d:'双模式共用压痕 8 秒'},
+    {t:'节奏踩点 120 BPM', id:'rank', d:'连击 30 次后音高上扬'},
+    {t:'多米诺气泡连击', id:'rank', d:'11-05 修复计数'},
+    {t:'踩踏解压棋完整度', id:'faq', d:'60% 以下不触发连击加成'},
+    {t:'纸杯踩扁', id:'rank', d:'纸质塌陷声 · 单局短'},
+    {t:'漏踩率对比', id:'compare', d:'连续 11% / 逐点 3%'},
+    {t:'振动马达间隔', id:'news', d:'12 毫秒与 18 毫秒'},
+    {t:'慢踩档 0.9 秒', id:'updates', d:'11-08 新增'}
+  ];
+  function esc(s){return s.replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function doSearch(){
+    var q = searchInput.value.trim().toLowerCase();
+    searchOut.innerHTML = '';
+    if (!q) { searchOut.classList.remove('show'); return; }
+    var hits = index.filter(function(item){
+      return item.t.toLowerCase().indexOf(q) > -1 || item.d.toLowerCase().indexOf(q) > -1;
+    }).slice(0,8);
+    if (!hits.length) {
+      var div = document.createElement('div');
+      div.className = 'empty';
+      div.textContent = '没有找到与「' + searchInput.value.trim() + '」匹配的条目，试试：气泡膜、踩雪、薄冰、踏板。';
+      searchOut.appendChild(div);
+    } else {
+      hits.forEach(function(item){
+        var a = document.createElement('a');
+        a.href = '/#' + item.id;
+        a.innerHTML = '<strong>' + esc(item.t) + '</strong><br><span style="color:#6d7d76;font-size:12px">' + esc(item.d) + '</span>';
+        a.addEventListener('click', function(){ searchOut.classList.remove('show'); });
+        searchOut.appendChild(a);
+      });
+    }
+    searchOut.classList.add('show');
+  }
+  if (searchInput && searchOut) {
+    searchInput.addEventListener('input', doSearch);
+    searchInput.addEventListener('focus', doSearch);
+    document.addEventListener('click', function(e){
+      if (!searchOut.contains(e.target) && e.target !== searchInput) {
+        searchOut.classList.remove('show');
+      }
+    });
+    searchInput.addEventListener('keydown', function(e){
+      if (e.key === 'Escape') { searchOut.classList.remove('show'); searchInput.blur(); }
+    });
+  }
+
+  /* 回到顶部 */
+  var toTop = document.getElementById('toTop');
+  var ticking = false;
+  function onScroll(){
+    if (!ticking) {
+      window.requestAnimationFrame(function(){
+        if (window.scrollY > 520) { toTop.classList.add('show'); }
+        else { toTop.classList.remove('show'); }
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  if (toTop) {
+    toTop.addEventListener('click', function(){
+      window.scrollTo({top:0, behavior:'smooth'});
+    });
+  }
+
+  /* 侧栏滚动高亮 */
+  var sideLinks = Array.prototype.slice.call(document.querySelectorAll('.side-nav a'));
+  var targets = sideLinks.map(function(a){
+    var id = a.getAttribute('href').replace('/#','');
+    return document.getElementById(id);
+  });
+  var mark = false;
+  function highlight(){
+    if (mark) return;
+    mark = true;
+    window.requestAnimationFrame(function(){
+      var y = window.scrollY + 180;
+      var cur = -1;
+      targets.forEach(function(el, i){
+        if (el && el.offsetTop <= y) cur = i;
+      });
+      sideLinks.forEach(function(a, i){
+        a.classList.toggle('active', i === cur);
+      });
+      mark = false;
+    });
+  }
+  window.addEventListener('scroll', highlight, {passive:true});
+  highlight();
+
+  /* 顶部导航高亮（主栏目） */
+  var topLinks = Array.prototype.slice.call(document.querySelectorAll('.nav-main a'));
+  var topTargets = topLinks.map(function(a){
+    return document.getElementById(a.getAttribute('href').replace('/#',''));
+  });
+  var flag = false;
+  function topHighlight(){
+    if (flag) return;
+    flag = true;
+    window.requestAnimationFrame(function(){
+      var y = window.scrollY + 200;
+      var cur = -1;
+      topTargets.forEach(function(el, i){
+        if (el && el.offsetTop <= y) cur = i;
+      });
+      topLinks.forEach(function(a, i){
+        a.classList.toggle('on', i === cur);
+      });
+      flag = false;
+    });
+  }
+  window.addEventListener('scroll', topHighlight, {passive:true});
+})();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "踩踏解压网站",
+  "alternateName": "踩踏解压工具合集",
+  "description": "气泡膜踩踏、踩雪音效、踩碎薄冰与仿真踏板的玩法整理与实测记录。",
+  "inLanguage": "zh-CN",
+  "dateModified": "2026-11-08"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "气泡膜踩踏的压破音为什么有时不出声？",
+      "acceptedAnswer": {"@type": "Answer", "text": "漏踩区域不会触发声音。按住拖动时判定基于路径覆盖，手指滑得太快会在两格之间跳过一格。11-06 之后计数与声音同步。"}
+    },
+    {
+      "@type": "Question",
+      "name": "踩雪音效里的干雪和湿雪差别在哪？",
+      "acceptedAnswer": {"@type": "Answer", "text": "干雪录音气温 -14℃，高频颗粒细，中频薄；湿雪录音在 0℃ 左右，低频下沉慢，循环长到 48 秒。耳机下差异明显，手机外放时低频被削。"}
+    },
+    {
+      "@type": "Question",
+      "name": "踩碎薄冰为什么要设置 1.6 秒冷却？",
+      "acceptedAnswer": {"@type": "Answer", "text": "薄冰是单次触发音源，碎冰声带水面回响，如果立刻可以重复踩，回响会叠成连续噪音。1.6 秒来自 10-15 的修订。"}
+    },
+    {
+      "@type": "Question",
+      "name": "仿真踏板的低档和高档有什么区别？",
+      "acceptedAnswer": {"@type": "Answer", "text": "低档触发阈值 0.40，轻踩不容易误触；高档 0.16，力度稍大就触发。11-04 把低档从 0.32 调到 0.40，以减少滑屏误触。"}
+    },
+    {
+      "@type": "Question",
+      "name": "枯叶堆的三层碎裂音具体是什么？",
+      "acceptedAnswer": {"@type": "Answer", "text": "叶面破裂、叶脉断裂、叶片落地三声，修订后依次间隔约 40、90 毫秒，音量比例按叶片面积自动分配。"}
+    },
+    {
+      "@type": "Question",
+      "name": "踩踏解压棋的路径完整度怎么算？",
+      "acceptedAnswer": {"@type": "Answer", "text": "以每次落指的起点到终点连成的线为候选路径，覆盖的格子数除以应覆盖格数即为完整度。低于 60% 时不触发连击加成。"}
+    }
+  ]
+}
+</script>
+</body>
+          </html>
